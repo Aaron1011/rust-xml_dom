@@ -71,6 +71,12 @@ impl<T> RcRefCell<T> {
     }
 }
 
+impl<T: Sized> RcRefCell<T> {
+    pub fn as_ptr(obj: &RcRefCell<T>) -> *const () {
+        Rc::as_ptr(&obj.inner) as *const ()
+    }
+}
+
 // ------------------------------------------------------------------------------------------------
 
 impl<T> Clone for WeakRefCell<T> {
